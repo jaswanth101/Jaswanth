@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -139,23 +140,19 @@ export default function Navbar() {
               </a>
             ))}
 
-            {/* Pill Contact & Circle Arrow Double CTA Buttons */}
-            <div className="flex items-center gap-1.5 ml-4 group/contact">
+            {/* Animated Contact Button */}
+            <div className="ml-4 flex items-center">
               <a
                 href="#contact"
                 onClick={(e) => handleScrollTo(e, '#contact')}
-                className="px-5 py-2.5 rounded-full text-xs font-mono tracking-wider font-bold transition-all duration-300 bg-white text-black hover:bg-[#FFEA00] hover:text-black hover:shadow-[0_0_15px_rgba(255, 234, 0,0.4)]"
+                className="relative flex items-center text-[11px] font-mono font-bold tracking-widest rounded-full h-[36px] p-1 pl-5 pr-[42px] group transition-all duration-500 hover:pl-[42px] hover:pr-5 w-fit overflow-hidden cursor-pointer bg-white text-black hover:bg-neutral-200 shadow-sm"
               >
-                Contact
-              </a>
-              <a
-                href="#contact"
-                onClick={(e) => handleScrollTo(e, '#contact')}
-                className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 bg-white text-black hover:bg-[#FFEA00] hover:text-black hover:shadow-[0_0_15px_rgba(255, 234, 0,0.4)]"
-              >
-                <span className="inline-block transition-transform duration-300 group-hover/contact:rotate-45">
-                  ↗
+                <span className="relative z-10 transition-all duration-500 whitespace-nowrap pt-[1px]">
+                  Contact
                 </span>
+                <div className="absolute right-1 w-[28px] h-[28px] bg-black text-white rounded-full flex items-center justify-center transition-all duration-500 group-hover:right-[calc(100%-32px)] group-hover:rotate-45 group-hover:bg-[#FFEA00] group-hover:text-black group-hover:shadow-[0_0_15px_rgba(255,234,0,0.5)]">
+                  <ArrowUpRight size={14} />
+                </div>
               </a>
             </div>
           </div>

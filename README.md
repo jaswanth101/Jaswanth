@@ -1,7 +1,7 @@
-# Pramod Kumar
-### Agentic AI Engineer
+# Vanapalli Jaswanth
+### Agentic AI Engineer & Solutions Architect
 
-Hi! I'm Pramod Kumar, an AI Engineer specializing in building production-grade multi-agent systems, stateful AI workflows, and hybrid RAG pipelines. 
+Hi! I'm Vanapalli Jaswanth, an Agentic AI Engineer & Solutions Architect specializing in scalable platforms, n8n workflows, and production-grade RAG pipelines.
 
 This repository houses my personal portfolio, built to visually showcase my work, my system design philosophies, and the complex AI architectures I engineer.
 
@@ -22,8 +22,8 @@ I built this portfolio to act as a sleek, highly-interactive reflection of my te
 ## 🤝 Let's Connect
 
 I'm always open to discussing Agentic AI, reliable RAG pipelines, and advanced system architectures.
-- **LinkedIn**: [Pramod Kumar Thummala](https://www.linkedin.com/in/pramodkumarthummala)
-- **Email**: [pramodlucky2525@gmail.com](mailto:pramodlucky2525@gmail.com)
+- **LinkedIn**: [Vanapalli Jaswanth](https://www.linkedin.com/in/jaswanth101)
+- **Email**: [jaswanth@example.com](mailto:jaswanth@example.com)
 
 ---
-*Designed & Engineered by Pramod Kumar © 2026*
+*Designed & Engineered by Vanapalli Jaswanth © 2026*

@@ -1,55 +1,124 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Database, BrainCircuit, Network, Cpu, Layers, Activity } from 'lucide-react';
 
 type CardType = 'stripe' | 'wise' | 'paypal' | null;
 
 const contentMap = {
   stripe: {
-    title: "Expert Matching",
-    description: "Connect with industry leaders seamlessly.",
-    feature: "Our intelligent algorithm analyzes your project needs and matches you with top-tier professionals instantly.",
-    cta: "Find Experts",
+    title: "RAG Applications",
+    description: "Retrieval-Augmented Generation.",
+    feature: "Integrating proprietary knowledge bases with LLMs using Vector DBs for hallucination-free, highly contextual responses.",
+    cta: "View RAG Projects",
     themeColor: "#FFEA00",
     glowColor: "rgba(255, 234, 0, 0.2)",
     Visual: () => (
-      <VisualPlaceholder color="#FFEA00">
-        <div className="node center"></div>
-        <div className="node n1"></div>
-        <div className="node n2"></div>
-        <div className="node n3"></div>
-        <svg className="connections"><path d="M50 50 L20 20 M50 50 L80 20 M50 50 L50 80" stroke="#FFEA00" strokeWidth="2" fill="none"/></svg>
-      </VisualPlaceholder>
+      <div className="w-full h-full relative flex items-center justify-center gap-6 bg-gradient-to-br from-[#FFEA00]/10 to-transparent rounded-xl border border-[#FFEA00]/20 overflow-hidden">
+        <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}>
+          <Database size={42} color="#FFEA00" strokeWidth={1.5} />
+        </motion.div>
+        
+        {/* Animated flow dots */}
+        <div className="flex gap-2">
+          {[0, 1, 2].map((i) => (
+            <motion.div
+              key={i}
+              className="w-2 h-2 rounded-full bg-[#FFEA00]"
+              animate={{ opacity: [0.2, 1, 0.2], scale: [0.8, 1.2, 0.8] }}
+              transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.3 }}
+            />
+          ))}
+        </div>
+
+        <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}>
+          <BrainCircuit size={42} color="#FFEA00" strokeWidth={1.5} />
+        </motion.div>
+      </div>
     )
   },
   wise: {
-    title: "Seamless Communication",
-    description: "Global collaboration without friction.",
-    feature: "Integrated chat, secure video meetings, and unified workspaces keep your team aligned across time zones.",
-    cta: "Start Collaborating",
+    title: "Model Fine-Tuning",
+    description: "Domain-Specific LLM Adaptation.",
+    feature: "Employing LoRA and PEFT techniques to train base models on custom datasets, dramatically improving specialized task performance.",
+    cta: "View Fine-Tuning",
     themeColor: "#FFFFFF",
     glowColor: "rgba(255, 255, 255, 0.1)",
     Visual: () => (
-      <VisualPlaceholder color="#FFFFFF">
-        <div className="message left"></div>
-        <div className="message right"></div>
-        <div className="message left short"></div>
-      </VisualPlaceholder>
+      <div className="w-full h-full relative flex items-center justify-center bg-gradient-to-br from-white/5 to-transparent rounded-xl border border-white/10 overflow-hidden">
+        <div className="flex flex-col gap-4 items-center">
+          <motion.div 
+            className="flex items-center gap-4"
+            animate={{ opacity: [0.6, 1, 0.6] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Layers size={36} color="#FFFFFF" strokeWidth={1.5} />
+            <div className="h-[2px] w-12 bg-gradient-to-r from-white/80 to-transparent overflow-hidden relative">
+              <motion.div 
+                className="absolute top-0 bottom-0 left-0 w-4 bg-white blur-[2px]"
+                animate={{ x: [-20, 60] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+              />
+            </div>
+            <Cpu size={36} color="#FFFFFF" strokeWidth={1.5} />
+          </motion.div>
+          {/* Animated Loss Graph */}
+          <div className="w-40 h-10 relative flex items-end gap-1.5 opacity-80">
+            {[40, 32, 25, 18, 12, 8, 5, 3].map((h, i) => (
+              <motion.div
+                key={i}
+                className="flex-1 bg-white/60 rounded-t-sm origin-bottom"
+                animate={{ scaleY: [0, h/40, h/40] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeOut", times: [0, 0.4, 1], delay: i * 0.1 }}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
     )
   },
   paypal: {
-    title: "Knowledge Network",
-    description: "Tap into collective intelligence.",
-    feature: "Access an ever-growing ecosystem of shared insights, templates, and proven strategies from verified experts.",
-    cta: "Explore Network",
+    title: "Multi-Agent Systems",
+    description: "Autonomous AI Workflows.",
+    feature: "Orchestrating collaborative swarms of specialized AI agents to reason, plan, and execute complex multi-step problems autonomously.",
+    cta: "Explore Agents",
     themeColor: "#222222",
     glowColor: "rgba(255, 255, 255, 0.05)",
     Visual: () => (
-      <VisualPlaceholder color="#FFEA00">
-         <div className="grid-cells">
-            {[...Array(9)].map((_, i) => <div key={i} className="cell" />)}
-         </div>
-      </VisualPlaceholder>
+      <div className="w-full h-full relative flex items-center justify-center bg-gradient-to-br from-[#FFEA00]/5 to-transparent rounded-xl border border-[#FFEA00]/10 overflow-hidden">
+        <div className="relative w-32 h-32 flex items-center justify-center">
+          {/* Center Orchestrator */}
+          <motion.div
+            className="z-10 bg-[#111] p-2 rounded-full border border-[#FFEA00]/50 shadow-[0_0_15px_rgba(255,234,0,0.2)]"
+            animate={{ scale: [1, 1.1, 1] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Network size={32} color="#FFEA00" strokeWidth={1.5} />
+          </motion.div>
+          
+          {/* Rotating Satellite Agents */}
+          <motion.div 
+            className="absolute inset-0"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          >
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-8 bg-[#111] border border-[#FFEA00]/40 rounded-full flex items-center justify-center shadow-[0_0_10px_rgba(255,234,0,0.1)]">
+              <Cpu size={16} color="#FFEA00"/>
+            </div>
+            <div className="absolute bottom-4 left-2 w-8 h-8 bg-[#111] border border-[#FFEA00]/40 rounded-full flex items-center justify-center shadow-[0_0_10px_rgba(255,234,0,0.1)]">
+              <Database size={16} color="#FFEA00"/>
+            </div>
+            <div className="absolute bottom-4 right-2 w-8 h-8 bg-[#111] border border-[#FFEA00]/40 rounded-full flex items-center justify-center shadow-[0_0_10px_rgba(255,234,0,0.1)]">
+              <Activity size={16} color="#FFEA00"/>
+            </div>
+            
+            {/* Connecting lines */}
+            <svg className="absolute inset-0 w-full h-full -z-10 opacity-30">
+              <circle cx="64" cy="64" r="45" stroke="#FFEA00" strokeWidth="1" fill="none" strokeDasharray="4 4" />
+            </svg>
+          </motion.div>
+        </div>
+      </div>
     )
   }
 };
@@ -127,7 +196,7 @@ const WalletCards = () => {
         {/* Right side Wallet */}
         <WalletSection
           animate={activeCard ? { 
-            x: '20%', // Shift right
+            x: '25%', // Shift right perfectly to the side
             rotateY: -10,
             rotateZ: 2,
             scale: 0.95
@@ -162,16 +231,16 @@ const WalletCards = () => {
                 >
                   <div className="card-inner">
                     <div className="card-top">
-                      <span>Stripe</span>
+                      <span>RAG Engine</span>
                       <div className="chip" />
                     </div>
                     <div className="card-bottom">
                       <div className="card-info">
-                        <span className="label">Holder</span><span className="value">ALEX SMITH</span>
+                        <span className="label">Stack</span><span className="value">VECTOR DB</span>
                       </div>
                       <div className="card-number-wrapper">
-                        <span className="hidden-stars">**** 4242</span>
-                        <span className="card-number">5524 9910 4242</span>
+                        <span className="hidden-stars">**** CHUNK</span>
+                        <span className="card-number">SEMANTIC SEARCH</span>
                       </div>
                     </div>
                   </div>
@@ -185,16 +254,16 @@ const WalletCards = () => {
                 >
                   <div className="card-inner">
                     <div className="card-top">
-                      <span>Wise</span>
+                      <span>Fine-Tuning</span>
                       <div className="chip" />
                     </div>
                     <div className="card-bottom">
                       <div className="card-info">
-                        <span className="label">Business</span><span className="value">STUDIO LLC</span>
+                        <span className="label">Method</span><span className="value">QLoRA / PEFT</span>
                       </div>
                       <div className="card-number-wrapper">
-                        <span className="hidden-stars">**** 8810</span>
-                        <span className="card-number">9012 4432 8810</span>
+                        <span className="hidden-stars">**** LOSS</span>
+                        <span className="card-number">DOMAIN ADAPTED</span>
                       </div>
                     </div>
                   </div>
@@ -208,16 +277,16 @@ const WalletCards = () => {
                 >
                   <div className="card-inner">
                     <div className="card-top">
-                      <span>Pay<b style={{ color: '#121212' }}>Pal</b></span>
+                      <span>Multi-Agent<b style={{ color: '#121212' }}>ic</b></span>
                       <div className="chip" />
                     </div>
                     <div className="card-bottom">
                       <div className="card-info">
-                        <span className="label">Email</span><span className="value">hello@work.com</span>
+                        <span className="label">Framework</span><span className="value">LANGGRAPH</span>
                       </div>
                       <div className="card-number-wrapper">
-                        <span className="hidden-stars">**** 0094</span>
-                        <span className="card-number">3312 0045 0094</span>
+                        <span className="hidden-stars">**** NODE</span>
+                        <span className="card-number">AUTONOMOUS SWARM</span>
                       </div>
                     </div>
                   </div>
@@ -225,16 +294,16 @@ const WalletCards = () => {
 
                 <div className="pocket">
                   <svg className="pocket-svg" viewBox="0 0 280 160" fill="none">
-                    <path d="M 0 20 C 0 10, 5 10, 10 10 C 20 10, 25 25, 40 25 L 240 25 C 255 25, 260 10, 270 10 C 275 10, 280 10, 280 20 L 280 120 C 280 155, 260 160, 240 160 L 40 160 C 20 160, 0 155, 0 120 Z" fill="#1e341e" />
-                    <path d="M 8 22 C 8 16, 12 16, 15 16 C 23 16, 27 29, 40 29 L 240 29 C 253 29, 257 16, 265 16 C 268 16, 272 16, 272 22 L 272 120 C 272 150, 255 152, 240 152 L 40 152 C 25 152, 8 152, 8 120 Z" stroke="#3d5635" strokeWidth="1.5" strokeDasharray="6 4" />
+                    <path d="M 0 20 C 0 10, 5 10, 10 10 C 20 10, 25 25, 40 25 L 240 25 C 255 25, 260 10, 270 10 C 275 10, 280 10, 280 20 L 280 120 C 280 155, 260 160, 240 160 L 40 160 C 20 160, 0 155, 0 120 Z" fill="#151515" />
+                    <path d="M 8 22 C 8 16, 12 16, 15 16 C 23 16, 27 29, 40 29 L 240 29 C 253 29, 257 16, 265 16 C 268 16, 272 16, 272 22 L 272 120 C 272 150, 255 152, 240 152 L 40 152 C 25 152, 8 152, 8 120 Z" stroke="#333333" strokeWidth="1.5" strokeDasharray="6 4" />
                   </svg>
                   <div className="pocket-content">
                     <div style={{ position: 'relative', height: 24, width: '100%' }}>
                       <div className="balance-stars">******</div>
-                      <div className="balance-real">$12,450.00</div>
+                      <div className="balance-real">15+ Models</div>
                     </div>
-                    <div style={{ color: '#698263', fontSize: 12, fontWeight: 500 }}>
-                      Total Balance
+                    <div style={{ color: '#888888', fontSize: 12, fontWeight: 500 }}>
+                      Total Experiments
                     </div>
                     <div className="eye-icon-wrapper">
                       <svg className="eye-icon eye-slash" width={20} height={20} viewBox="0 0 24 24" fill="none" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
@@ -260,12 +329,12 @@ const WalletCards = () => {
 
 const Container = styled.div`
   width: 100%;
-  min-height: 100vh;
+  padding: 40px 0;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   background: transparent; /* Keep original background logic outside */
   perspective: 1200px;
 `;
@@ -288,7 +357,7 @@ const LayoutWrapper = styled.div`
   max-width: 1200px;
   position: relative;
   z-index: 10;
-  height: 600px;
+  height: 460px;
   
   @media (max-width: 768px) {
     flex-direction: column;
@@ -334,7 +403,7 @@ const ContentPanel = styled(motion.div)`
   .visual-container {
     width: 100%;
     height: 180px;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 16px;
     display: flex;
@@ -342,6 +411,7 @@ const ContentPanel = styled(motion.div)`
     justify-content: center;
     overflow: hidden;
     position: relative;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
   }
 
   .feature {
@@ -368,74 +438,9 @@ const ContentPanel = styled(motion.div)`
   }
 `;
 
-const VisualPlaceholder = styled.div<{color: string}>`
-  width: 100%;
-  height: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  /* Graph animation */
-  .node {
-    width: 12px;
-    height: 12px;
-    background: ${props => props.color};
-    border-radius: 50%;
-    position: absolute;
-    box-shadow: 0 0 10px ${props => props.color};
-  }
-  .center { top: 50%; left: 50%; transform: translate(-50%, -50%); width: 16px; height: 16px; }
-  .n1 { top: 20%; left: 20%; }
-  .n2 { top: 20%; left: 80%; }
-  .n3 { top: 80%; left: 50%; }
-  .connections {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0.5;
-  }
-
-  /* Chat animation */
-  .message {
-    width: 60%;
-    height: 24px;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.1);
-    margin: 8px 0;
-    position: absolute;
-  }
-  .left { left: 20px; top: 30px; }
-  .right { right: 20px; top: 70px; background: ${props => props.color}22; border: 1px solid ${props => props.color}55; }
-  .short { width: 40%; top: 110px; }
-
-  /* Grid animation */
-  .grid-cells {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    width: 120px;
-    height: 120px;
-  }
-  .cell {
-    background: rgba(255,255,255,0.05);
-    border-radius: 4px;
-    animation: pulse 2s infinite;
-  }
-  .cell:nth-child(2n) { animation-delay: 0.5s; background: ${props => props.color}33; }
-  .cell:nth-child(3n) { animation-delay: 1s; }
-
-  @keyframes pulse {
-    0% { opacity: 0.5; }
-    50% { opacity: 1; }
-    100% { opacity: 0.5; }
-  }
-`;
-
 const WalletSection = styled(motion.div)`
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -444,6 +449,7 @@ const WalletSection = styled(motion.div)`
   @media (min-width: 769px) {
     position: absolute;
     right: 0;
+    top: 0;
   }
 `;
 
@@ -487,10 +493,10 @@ const StyledWrapper = styled.div<{ $hasActive: boolean }>`
     bottom: 0;
     width: 280px;
     height: 200px;
-    background: #1e341e;
+    background: #111111;
     border-radius: 22px 22px 60px 60px;
     z-index: 5;
-    box-shadow: inset 0 25px 35px rgba(0, 0, 0, 0.4), inset 0 5px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 25px 35px rgba(0, 0, 0, 0.6), inset 0 5px 15px rgba(0, 0, 0, 0.8), 0 10px 20px rgba(0,0,0,0.5);
   }
 
   /* Cards */
@@ -589,11 +595,11 @@ const StyledWrapper = styled.div<{ $hasActive: boolean }>`
     gap: 8px;
   }
 
-  .balance-stars { color: #839e7b; font-size: 24px; letter-spacing: 4px; transition: 0.3s; }
-  .balance-real { color: #a7c59e; font-size: 22px; font-weight: 600; opacity: 0; position: absolute; top: 0; left: 50%; transform: translate(-50%, 10px); transition: 0.3s; }
+  .balance-stars { color: #666666; font-size: 24px; letter-spacing: 4px; transition: 0.3s; }
+  .balance-real { color: #ffffff; font-size: 22px; font-weight: 600; opacity: 0; position: absolute; top: 0; left: 50%; transform: translate(-50%, 10px); transition: 0.3s; }
   
   .eye-icon-wrapper { margin-top: 8px; height: 20px; width: 20px; position: relative; opacity: 0.3; transition: 0.3s; }
-  .eye-icon { position: absolute; top: 0; left: 0; stroke: #3be60b; transition: 0.3s; }
+  .eye-icon { position: absolute; top: 0; left: 0; stroke: #FFEA00; transition: 0.3s; }
 
   /* Default hovers when NO card is active */
   ${props => !props.$hasActive && `

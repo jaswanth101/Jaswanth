@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { motion, useInView, useSpring, useTransform, useMotionValue, useReducedMotion } from 'framer-motion';
+import WalletCards from './ui/WalletCards';
 
 interface ProjectItem {
   title: string;
@@ -202,6 +203,17 @@ export default function Projects() {
             />
           ))}
         </motion.div>
+
+        {/* Additional Projects Section */}
+        <div className="flex flex-col gap-12 mt-32 pt-20 border-t border-white/5 items-center">
+          <div className="text-center flex flex-col gap-4">
+            <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#FFEA00]">M o r e  &nbsp; W o r k</span>
+            <h3 className="font-sans font-black text-2xl sm:text-4xl text-white tracking-tight">Other Experiments</h3>
+          </div>
+          <div className="flex justify-center w-full">
+            <WalletCards />
+          </div>
+        </div>
 
       </div>
     </section>

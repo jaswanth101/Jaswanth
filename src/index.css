@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-cabinet: 'Cabinet Grotesk', sans-serif;
+  --font-righteous: 'Righteous', sans-serif;
+  --font-lora: 'Lora', serif;
+  --font-cormorant: 'Cormorant Garamond', serif;
+  --font-syne: 'Syne', sans-serif;
+  
+  --color-brand-green: #FFEA00;
+  --color-brand-dark: #121212;
+  --color-brand-bg: #0A0A0A;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-brand-bg);
+  }
+  
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0d0d0d;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #222222;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-brand-green);
+  }
+}
+
+/* Background Grid Overlay styling */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+/* Preloader shimmer bar animation */
+@keyframes shimmer {
+  0%   { transform: translateX(-100%); }
+  50%  { transform: translateX(0%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ── Hero section animation helpers ──────────────────────────────────────── */
+
+/* Scroll indicator mouse wheel bounce */
+@keyframes scroll-wheel {
+  0%, 100% { transform: translateY(0);   opacity: 0.8; }
+  50%       { transform: translateY(9px); opacity: 0.15; }
+}
+
+/* Chevron triple-cascade scroll hint */
+@keyframes chevron-cascade {
+  0%, 100% { opacity: 0; transform: translateY(0); }
+  50%       { opacity: 1; transform: translateY(3px); }
+}
+
+/* Smooth character 3D flip-up reveal */
+@keyframes char-reveal {
+  from { opacity: 0; transform: translateY(60px) rotateX(-70deg); }
+  to   { opacity: 1; transform: translateY(0)    rotateX(0deg);  }
+}
+
+/* Sidebar line draw */
+@keyframes line-draw {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+
+/* Subtle breathing pulse for the ~ button */
+@keyframes float-pulse {
+  0%, 100% { box-shadow: 0 10px 40px rgba(0,0,0,0.18); }
+  50%       { box-shadow: 0 16px 48px rgba(0,0,0,0.28); }
+}
+
+/* Text blur-in fade */
+@keyframes blur-in {
+  from { opacity: 0; filter: blur(12px); transform: translateY(18px); }
+  to   { opacity: 1; filter: blur(0px);  transform: translateY(0);    }
+}
+
+/* --- SkillOrbit Animations --- */
+@keyframes orbit-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes orbit-spin-reverse {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes center-signal {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 40px rgba(255, 234, 0, 0.35);
+    border-color: rgba(255, 234, 0, 0.4);
+  }
+  20% {
+    transform: scale(1.06);
+    box-shadow: 0 0 58px rgba(255, 234, 0, 0.58);
+    border-color: rgba(255, 234, 0, 0.78);
+  }
+  40% {
+    transform: scale(1.03);
+    box-shadow: 0 0 46px rgba(255, 234, 0, 0.46);
+    border-color: rgba(255, 234, 0, 0.56);
+  }
+  60% {
+    transform: scale(1.05);
+    box-shadow: 0 0 54px rgba(255, 234, 0, 0.52);
+    border-color: rgba(255, 234, 0, 0.68);
+  }
+  80% {
+    transform: scale(1.02);
+    box-shadow: 0 0 42px rgba(255, 234, 0, 0.4);
+    border-color: rgba(255, 234, 0, 0.48);
+  }
+}
+
+@layer utilities {
+  .orbit-rotate {
+    animation: orbit-spin 33.6s linear infinite;
+  }
+  .orbit-counter-rotate {
+    animation: orbit-spin-reverse 33.6s linear infinite;
+  }
+  .center-signal {
+    animation: center-signal 9.016s ease-in-out infinite;
+  }
+}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Database, BrainCircuit, Network, Cpu, Layers, Activity } from 'lucide-react';
+import Strands from './Strands';
 
 type CardType = 'stripe' | 'wise' | 'paypal' | null;
 
@@ -14,26 +15,29 @@ const contentMap = {
     themeColor: "#FFEA00",
     glowColor: "rgba(255, 234, 0, 0.2)",
     Visual: () => (
-      <div className="w-full h-full relative flex items-center justify-center gap-6 bg-gradient-to-br from-[#FFEA00]/10 to-transparent rounded-xl border border-[#FFEA00]/20 overflow-hidden">
-        <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}>
-          <Database size={42} color="#FFEA00" strokeWidth={1.5} />
-        </motion.div>
-        
-        {/* Animated flow dots */}
-        <div className="flex gap-2">
-          {[0, 1, 2].map((i) => (
-            <motion.div
-              key={i}
-              className="w-2 h-2 rounded-full bg-[#FFEA00]"
-              animate={{ opacity: [0.2, 1, 0.2], scale: [0.8, 1.2, 0.8] }}
-              transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.3 }}
-            />
-          ))}
+      <div className="w-full h-full relative flex items-center justify-center bg-gradient-to-br from-[#FFEA00]/10 to-transparent rounded-xl border border-[#FFEA00]/20 overflow-hidden">
+        <div style={{ width: '100%', height: '100%', position: 'absolute', inset: 0 }}>
+          <Strands
+            colors={["#F97316","#7C3AED","#06B6D4"]}
+            count={3}
+            speed={0.5}
+            amplitude={1}
+            waviness={1}
+            thickness={0.7}
+            glow={2.6}
+            taper={3}
+            spread={1}
+            intensity={0.6}
+            saturation={2}
+            opacity={1}
+            scale={1.5}
+            glass={false}
+            refraction={1}
+            dispersion={1}
+            glassSize={1}
+            hueShift={0}
+          />
         </div>
-
-        <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}>
-          <BrainCircuit size={42} color="#FFEA00" strokeWidth={1.5} />
-        </motion.div>
       </div>
     )
   },
